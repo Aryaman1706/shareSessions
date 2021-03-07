@@ -1,19 +1,17 @@
 const mongoose = require("mongoose");
 
 module.exports = () => {
-  mongoose.connect(
-    process.env.MONGO_URI,
-    {
+  const clientPromise = mongoose
+    .connect(process.env.MONGO_URI, {
       useNewUrlParser: true,
       useCreateIndex: true,
       useFindAndModify: false,
       useUnifiedTopology: true,
-    },
-    (error) => {
-      if (error) console.error("Connection to MongoDB failed.");
-      console.log("Connected to MongoDB");
-    },
-  );
+    })
+    .then((m) => {
+      console.log("Connected to mongoDB");
+      return m.connection.getClient();
+    });
 
-  return mongoose.connection;
+  return clientPromise;
 };
