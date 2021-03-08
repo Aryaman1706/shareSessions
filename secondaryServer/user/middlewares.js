@@ -1,5 +1,5 @@
 // * Middleware to check if user is logged in
-exports.userIsLoggedIn = (req, res, next) => {
+export const userIsLoggedIn = (req, res, next) => {
   // Session is present
   if (req.user) {
     next();

@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
-const connection = mongoose
+export const connectionPromise = mongoose
   .createConnection(process.env.COMMON_MONGO_URI, {
     useNewUrlParser: true,
     useCreateIndex: true,
@@ -12,4 +12,4 @@ const connection = mongoose
     return c;
   });
 
-module.exports = connection;
+export const connection = await connectionPromise;

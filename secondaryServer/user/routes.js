@@ -1,10 +1,10 @@
-const express = require("express");
+import express from "express";
 
 // * Middlewares
-const { userIsLoggedIn } = require("./middlewares");
+import { userIsLoggedIn } from "./middlewares.js";
 
 // * Controllers
-const controllers = require("./controllers");
+import * as controllers from "./controllers.js";
 
 // * API Endpoints ->
 const router = express.Router();
@@ -13,4 +13,4 @@ router.get("/profile", userIsLoggedIn, controllers.profile);
 
 // * End of API Endpoints ->
 
-module.exports = router;
+export default router;

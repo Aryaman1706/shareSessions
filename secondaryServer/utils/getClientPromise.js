@@ -1,5 +1,5 @@
-const commonDBConnectionPromise = require("../config/connectDB");
+import { connectionPromise } from "../config/connectDB.js";
 
-const clientPromise = commonDBConnectionPromise.then((c) => c.getClient());
+const clientPromise = connectionPromise.then((c) => c.getClient());
 
-module.exports = clientPromise;
+export default clientPromise;

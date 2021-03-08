@@ -1,26 +1,26 @@
-const express = require("express");
-
 // * Environment Variables Init
-require("dotenv").config();
+import env from "dotenv";
+env.config({ path: "./.env" });
+
+import express from "express";
 
 // * Server Init
 const app = express();
 
 // * DB Connection
-const commonDBConnectionPromise = require("./config/connectDB");
+import "./config/connectDB.js";
 
 // * Auth Init
-require("./config/auth");
+import "./config/auth.js";
 
 // * Middlewares
-require("./config/middlewares")(
-  app,
-  express,
-  require("./utils/getClientPromise"),
-);
+import middlewares from "./config/middlewares.js";
+import clientPromise from "./utils/getClientPromise.js";
+middlewares(app, express, clientPromise);
 
 // * Routes
-// require("./config/routes")(app);
+import routes from "./config/routes.js";
+routes(app);
 
 // * Start Server
 const port = process.env.PORT || 8000;

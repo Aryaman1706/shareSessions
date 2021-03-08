@@ -1,4 +1,5 @@
-const passport = require("passport");
+import passport from "passport";
+import { model as User } from "../user/index.js";
 
 // * Deserialize User
 passport.deserializeUser((id, done) => {

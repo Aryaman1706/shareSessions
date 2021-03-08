@@ -1,4 +1,4 @@
-module.exports = {
-  routes: require("./routes"),
-  model: require("./model"),
-};
+import routes from "./routes.js";
+import model from "./model.js";
+
+export { routes, model };

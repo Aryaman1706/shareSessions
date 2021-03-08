@@ -1,8 +1,8 @@
 // * Models
-const User = require("./model");
+import User from "./model.js";
 
 // * Controllers ->
-exports.profile = async (req, res) => {
+export const profile = async (req, res) => {
   try {
     const user = await User.findById(req.user._id).exec();
     if (!user)
