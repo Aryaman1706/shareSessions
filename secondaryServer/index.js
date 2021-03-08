@@ -7,16 +7,20 @@ require("dotenv").config();
 const app = express();
 
 // * DB Connection
-const commonDBConnection = require("./config/connectDB");
+const commonDBConnectionPromise = require("./config/connectDB");
 
 // * Auth Init
 require("./config/auth");
 
 // * Middlewares
-require("./config/middlewares")(app, express, commonDBConnection.getClient());
+require("./config/middlewares")(
+  app,
+  express,
+  require("./utils/getClientPromise"),
+);
 
 // * Routes
-require("./config/routes")(app);
+// require("./config/routes")(app);
 
 // * Start Server
 const port = process.env.PORT || 8000;

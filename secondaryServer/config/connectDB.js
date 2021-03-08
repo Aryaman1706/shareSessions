@@ -1,10 +1,15 @@
 const mongoose = require("mongoose");
 
-const connection = mongoose.createConnection(process.env.COMMON_MONGO_URI, {
-  useNewUrlParser: true,
-  useCreateIndex: true,
-  useFindAndModify: false,
-  useUnifiedTopology: true,
-});
+const connection = mongoose
+  .createConnection(process.env.COMMON_MONGO_URI, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+    useUnifiedTopology: true,
+  })
+  .then((c) => {
+    console.log("Connected to mongo db");
+    return c;
+  });
 
 module.exports = connection;

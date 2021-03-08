@@ -1,6 +1,8 @@
-const commonDBConnection = require("../config/connectDB");
 const mongoose = require("mongoose");
+const commonConnection = require("../utils/getConnection");
 
-const User = mongoose.model("User", {});
+const userSchema = new mongoose.Schema({});
+
+const User = commonConnection.model("User", userSchema);
 
 module.exports = User;

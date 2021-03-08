@@ -2,7 +2,7 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo").default;
 const passport = require("passport");
 
-module.exports = (app, express, clientPromise) => {
+module.exports = (app, express, client) => {
   // req.body
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
@@ -11,11 +11,9 @@ module.exports = (app, express, clientPromise) => {
   app.use(
     session({
       store: MongoStore.create({
-        clientPromise,
+        client,
         mongoOptions: {
           useNewUrlParser: true,
-          useCreateIndex: true,
-          useFindAndModify: false,
           useUnifiedTopology: true,
         },
       }),
