@@ -50,6 +50,7 @@ exports.profile = async (req, res) => {
     const result = {
       name: req.user.name,
       email: req.user.email,
+      server: "mainServer",
     };
 
     return res.status(200).json({
