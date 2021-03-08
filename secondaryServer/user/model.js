@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { connection } from "../config/connectDB.js";
+import connection from "../config/connectDB.js";
 
 const userSchema = new mongoose.Schema(
   {
