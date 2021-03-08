@@ -7,16 +7,21 @@ import express from "express";
 // * Server Init
 const app = express();
 
+// * Middlewares
+import middlewares from "./config/middlewares.js";
+
 // * DB Connection
-import "./config/connectDB.js";
+import connection from "./config/connectDB.js";
+
+// prettier-ignore
+(async function(){
+  const mongoClient =  (await connection).getClient()
+  const mongoClientPromise = Promise.resolve(mongoClient)
+  middlewares(app, express, mongoClientPromise)
+}())
 
 // * Auth Init
 import "./config/auth.js";
-
-// * Middlewares
-import middlewares from "./config/middlewares.js";
-import clientPromise from "./utils/getClientPromise.js";
-middlewares(app, express, clientPromise);
 
 // * Routes
 import routes from "./config/routes.js";

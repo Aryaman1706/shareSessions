@@ -11,7 +11,7 @@ export default (app, express, clientPromise) => {
   app.use(
     session({
       store: MongoStore.default.create({
-        clientPromise: clientPromise,
+        clientPromise,
         mongoOptions: {
           useNewUrlParser: true,
           useUnifiedTopology: true,
