@@ -10,8 +10,8 @@ export default (app, express, clientPromise) => {
   // Session store
   app.use(
     session({
-      store: MongoStore.create({
-        clientPromise,
+      store: MongoStore.default.create({
+        clientPromise: clientPromise,
         mongoOptions: {
           useNewUrlParser: true,
           useUnifiedTopology: true,

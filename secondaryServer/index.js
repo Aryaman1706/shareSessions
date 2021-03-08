@@ -1,6 +1,6 @@
 // * Environment Variables Init
-import env from "dotenv";
-env.config({ path: "./.env" });
+import dotenv from "dotenv";
+dotenv.config();
 
 import express from "express";
 
