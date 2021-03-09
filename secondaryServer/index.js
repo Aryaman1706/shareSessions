@@ -13,19 +13,19 @@ import middlewares from "./config/middlewares.js";
 // * DB Connection
 import connection from "./config/connectDB.js";
 
-// prettier-ignore
-(async function(){
-  const mongoClient =  (await connection).getClient()
-  const mongoClientPromise = Promise.resolve(mongoClient)
-  middlewares(app, express, mongoClientPromise)
-}())
-
 // * Auth Init
 import "./config/auth.js";
 
 // * Routes
 import routes from "./config/routes.js";
-routes(app);
+
+// prettier-ignore
+(async function(){
+  const mongoClient =  (await connection).getClient()
+  const mongoClientPromise = Promise.resolve(mongoClient)
+  middlewares(app, express, mongoClientPromise)
+  routes(app);
+}())
 
 // * Start Server
 const port = process.env.PORT || 8000;
